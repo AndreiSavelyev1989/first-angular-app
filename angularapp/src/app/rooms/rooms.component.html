@@ -2,7 +2,7 @@
 <div [hidden]="isHideRooms">
   Number of rooms: <span [innerText]="numberOfRooms"></span>
 </div>
-<div *ngIf="rooms.availableRooms > 0">
+<div *ngIf="rooms.availableRooms > 0" [ngStyle]="{'color': rooms.availableRooms ? 'green' : 'red'}">
   Available rooms: {{ rooms.availableRooms }}
 </div>
 <div>
@@ -18,7 +18,7 @@
       <th>Checkin Time</th>
       <th>Photo</th>
     </tr>
-    <tr *ngFor="let room of roomList; let o = odd; let e = even; let i = index">
+    <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let o = odd; let e = even; let i = index">
       <td>{{ i }}</td>
       <td>{{ e ? "Even" : "Odd" }}</td>
       <td>{{ room.roomNumber }}</td>
@@ -27,7 +27,7 @@
       <td>{{ room.amenities }}</td>
       <td>{{ room.checkinTime }}</td>
       <td>
-        <img style="width: 250px; height: 150px" src="{{ room.photos }}" />
+        <img [ngClass]="'image'" src="{{ room.photos }}" />
       </td>
     </tr>
   </table>
